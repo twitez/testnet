@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>TwiTez</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!--<link rel="stylesheet" href="./css/bulma.min.css"/>-->
+    <!--<link rel="stylesheet" href="./css/fontawesome.all.min.css"/>-->
+    <!--<link rel="stylesheet" href="./css/animate.min.css"/>-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"/>
+    
+    <!--<script src="./js/bulma-toast.min.js"></script>-->
+    <!--<script src="./js/walletbeacon-2.3.13.min.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/bulma-toast@2.4.2/dist/bulma-toast.min.js"></script>
+    <script src="https://unpkg.com/@airgap/beacon-sdk@2.3.13/dist/walletbeacon.min.js"></script>
+    <!--<script src="https://unpkg.com/@airgap/beacon-sdk@3.3.4/dist/walletbeacon.min.js"></script>-->
+
+    
+    <style>
+        .user-address:hover {
+            background-color: hsl(0, 0%, 96%);
+            cursor: copy;
+        }
+        .tweet:hover {
+            background-color: hsl(0, 0%, 96%);
+            cursor: pointer;
+        }
+        .tweet-name:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .tweet-btn-reply:hover {
+            background-color: hsl(0, 0%, 86%);
+            text-decoration: none !important;
+            cursor: pointer;
+        }
+        .tweet-btn-retweet:hover {
+            background-color: hsl(0, 0%, 86%);
+            text-decoration: none !important;
+            cursor: pointer;
+        }
+        .tweet-btn-like:hover {
+            background-color: hsl(0, 0%, 86%);
+            text-decoration: none !important;
+            cursor: pointer;
+        }
+        .tweet-btn-link:hover {
+            background-color: hsl(0, 0%, 86%);
+            text-decoration: none !important;
+            cursor: pointer;
+        }
+        .tweet-btn-edit:hover {
+            background-color: hsl(0, 0%, 86%);
+            text-decoration: none !important;
+            cursor: pointer;
+        }
+    </style>
+    
+</head>
+<body>
+
+    
+<div class="container" style="max-width: 700px;">
+
+<nav class="level has-background-link-light p-2" role="navigation">
+    <div class="level-left mb-1">
+        <div class="level-item ">
+            <p class="title has-text-link-dark is-3 is-clickable is-unselectable" onclick="window.location.search=''">
+                TwiTez<sup class="has-text-grey-light">&nbsp;&alpha;</sup>
+            </p>
+        </div>
+    </div>
+
+    <div class="level-item">
+        <div class="field has-addons">
+            <span class="control has-icons-left">
+                <input id="iSearch" class="input" type="text" placeholder="username"/>
+                <span class="icon is-left">@</span>
+            </span>
+            <span class="control">
+                <button id="btnSearch" class="button is-link is-rounded"><span class="icon is-small"><i class="fas fa-search"></i></span></button>
+            </span>
+        </div>
+    </div>
+
+    <div id="dLogin" class="level-right is-hidden">
+        <div class="level-item">
+            <div class="buttons">
+                <button id="btnLogIn" class="button is-link is-rounded"><strong>Log In</strong></button>
+                <button id="btnSignUp" class="button is-info is-rounded">Sign Up</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="dUser" class="level-right is-hidden">
+        <div class="level-item">
+            <div id="dUserMenu" class="dropdown is-right">
+                <div class="dropdown-trigger">
+                    <button class="button is-link is-rounded" onclick="document.getElementById('dUserMenu').classList.toggle('is-active')">
+                        <span class="icon is-small">@</span>
+                        <span id="tUsername"></span>
+                        <span class="icon is-small"><i class="fas fa-angle-down"></i></span>
+                    </button>
+                </div>
+                <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                    <div class="dropdown-content has-background-link-light">
+                        <a id="btnMyTweets" class="dropdown-item">
+                            <span class="icon"><i class="fa-regular fa-message"></i></span>
+                            <strong>&nbsp;My Tweets</strong>
+                        </a>
+                        <hr class="dropdown-divider has-background-grey-lighter"/>
+                        <a id="btnNewTweet" class="dropdown-item">
+                            <span class="icon"><i class="fa-solid fa-pencil"></i></span>
+                            <strong>&nbsp;New Tweet</strong>
+                        </a>
+                        <hr class="dropdown-divider has-background-grey-lighter"/>
+                        <a id="btnFollowing" class="dropdown-item">
+                            <span class="icon"><i class="fas fa-star"></i></span>
+                            <strong>&nbsp;Following</strong>
+                        </a>
+                        <hr class="dropdown-divider has-background-grey-lighter"/>
+                        <a id="btnProfile" class="dropdown-item">
+                            <span class="icon"><i class="fas fa-user"></i></span>
+                            <strong>&nbsp;Profile</strong>
+                        </a>
+                        <hr class="dropdown-divider has-background-grey-lighter"/>
+                        <a id="btnSettings" class="dropdown-item">
+                            <span class="icon"><i class="fas fa-gear"></i></span>
+                            <strong>&nbsp;Settings</strong>
+                        </a>
+                        <hr class="dropdown-divider has-background-grey-lighter"/>
+                        <a id="btnLogout" class="dropdown-item">
+                            <span class="icon"><i class="fas fa-arrow-right-from-bracket"></i></span>
+                            <strong>&nbsp;Log Out</strong>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    
+<!-- SignUp -->
+<div id="mSignUp" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head has-background-link-light">
+            <p class="modal-card-title">Sign Up</p>
+            <button id="bSignUpClose" class="delete"></button>
+        </header>
+        <div class="modal-card-body">
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Username:</label>
+                </div>
+                <div class="field-body">
+                    <div class="control has-icons-left" style="width: 100%">
+                        <input id="iUsername" class="input" type="text" placeholder="username"/>
+                        <span class="icon is-left">@</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="modal-card-foot has-background-link-light">
+            <div style="margin-left: auto">
+                <button id="bSignUpSignup" class="button is-info is-rounded">Sign Up</button>
+                <button id="bSignUpCancel" class="button is-rounded">Cancel</button>
+            </div>
+        </footer>
+    </div>
+</div>
+
+
+<!-- Status -->
+<div id="mStatus" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head has-background-link-light">
+            <p class="modal-card-title">Sign Up</p>
+            <button id="bStatusClose" class="delete"></button>
+        </header>
+        <div class="modal-card-body">
+            <div id="mStatusContentOk" class="content has-text-centered has-text-weight-semibold">
+                <br/>Please wait.
+                <br/>The Sign Up request is processing.
+                <br/><button class="button is-ghost is-loading"></button>
+                <br/>
+            </div>
+            <div id="mStatusContentError" class="content has-text-centered has-text-weight-semibold has-text-danger is-hidden">
+                <br/>The Sign Up request is failed.
+                <br/>Please try again later or contact TwiTez team.
+                <br/>
+                <br/>
+            </div>
+        </div>
+        <footer class="modal-card-foot has-background-link-light">
+            <div style="margin-left: auto">
+                <button id="bStatusCancel" class="button is-rounded">Cancel</button>
+            </div>
+        </footer>
+    </div>
+</div>
+
+
+<!-- New Tweet -->
+<div id="mNewTweet" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head has-background-link-light">
+            <p class="modal-card-title">
+                <span id="mntTitleNew" class="is-hidden">New </span><span id="mntTitleEdit" class="is-hidden">Edit </span>
+                <span id="mntTitleTweet" class="is-hidden">Tweet</span><span id="mntTitleReply" class="is-hidden">Reply</span>
+            </p>
+            <button id="bNewTweetClose" class="delete"></button>
+        </header>
+        <div id="dNewTweetEdit" class="modal-card-body">
+            <div class="field">
+                <label class="label">Text:</label>
+                <div class="field-body">
+                    <textarea id="tNewTweet" class="textarea"></textarea>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Media:</label>
+                <div class="field-body">
+                    <div class="select mr-2 mb-2">
+                        <select id="selMediaType">
+                            <option value="">Add media...</option>
+                            <option value="i">Image</option>
+                            <option value="y">Youtube</option>
+                            <!--<option value="a">Audio</option>-->
+                            <!--<option value="v">Video</option>-->
+                        </select>
+                    </div>
+                    <div class="control has-icons-left" style="width: 100%">
+                        <input id="iMediaLink" class="input" type="text" placeholder="" disabled=""/>
+                        <span id="sMediaIcon" class="icon is-left"></span>
+                    </div>
+                </div>
+            </div>
+            <small class="has-text-grey-light is-pulled-right">* the message can be edited within an hour after publication</small>
+        </div>
+        <div id="dNewTweetPreview" class="modal-card-body is-hidden">
+        </div>
+        <footer class="modal-card-foot has-background-link-light">
+            <button id="bNewTweetPreview" class="button is-info is-rounded">Preview</button>
+            <button id="bNewTweetEdit" class="button is-info is-rounded is-hidden">Edit</button>
+            <div class="buttons" style="margin-left: auto">
+                <button id="bNewTweetSend" class="button is-link is-rounded">Send</button>
+                <button id="bNewTweetCancel" class="button is-rounded">Cancel</button>
+            </div>
+        </footer>
+    </div>
+</div>
+
+
+<!-- Following -->
+<div id="mFollowing" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head has-background-link-light">
+            <p class="modal-card-title">Following</p>
+            <button id="bFollowingClose" class="delete"></button>
+        </header>
+        <div class="modal-card-body">
+            <div id="mFollowingLoading" class="has-text-centered is-hidden">
+                <button class="button is-ghost is-loading"></button>
+            </div>
+            <div id="mFollowingContent" class="content has-text-weight-semibold">
+            </div>
+        </div>
+        <footer class="modal-card-foot has-background-link-light">
+            <div style="margin-left: auto">
+                <button id="bFollowingCancel" class="button is-rounded">Cancel</button>
+            </div>
+        </footer>
+    </div>
+</div>
+
+
+<!-- Profile -->
+<div id="mProfile" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head has-background-link-light">
+            <p class="modal-card-title">Profile</p>
+            <button id="bProfileClose" class="delete"></button>
+        </header>
+
+        <div id="dProfileEdit" class="modal-card-body">
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Username:</label>
+                </div>
+                <div class="field-body">
+                    <div class="control has-icons-left" style="width: 100%">
+                        <input id="prUsername" class="input" type="text" disabled=""/>
+                        <span class="icon is-left">@</span>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Name:</label>
+                </div>
+                <div class="field-body">
+                    <input id="prName" class="input" type="text" placeholder="Your name ..."/>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Image URL:</label>
+                </div>
+                <div class="field-body">
+                    <input id="prImg" class="input" type="text" placeholder="Your avatar image URL (http:// https:// ipfs://) ..."/>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Description:</label>
+                </div>
+                <div class="field-body">
+                    <textarea id="prDesc" class="textarea" placeholder="Your description ..."></textarea>
+                </div>
+            </div>
+
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Location:</label>
+                </div>
+                <div class="field-body">
+                    <div class="control has-icons-left" style="width: 100%">
+                        <input id="prLocation" class="input" type="text" placeholder="Your location ..."/>
+                        <span class="icon is-left"><i class="fas fa-location-dot"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Website:</label>
+                </div>
+                <div class="field-body">
+                    <div class="control has-icons-left" style="width: 100%">
+                        <input id="prWebsite" class="input" type="text" placeholder="Website URL (http:// https://) ..."/>
+                        <span class="icon is-left"><i class="fas fa-globe"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Twitter:</label>
+                </div>
+                <div class="field-body">
+                    <div class="control has-icons-left" style="width: 100%">
+                        <input id="prTwitter" class="input" type="text" placeholder="Your twitter account ..."/>
+                        <span class="icon is-left">@</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div id="dProfilePreview" class="modal-card-body is-hidden">
+        </div>
+
+        <footer class="modal-card-foot has-background-link-light">
+            <button id="bProfilePreview" class="button is-info is-rounded">Preview</button>
+            <button id="bProfileEdit" class="button is-info is-rounded is-hidden">Edit</button>
+            <div style="margin-left: auto">
+                <button id="bProfileSave" class="button is-link is-rounded">Save</button>
+                <button id="bProfileCancel" class="button is-rounded">Cancel</button>
+            </div>
+        </footer>
+    </div>
+</div>
+
+
+<!-- Settings -->
+<div id="mSettings" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head has-background-link-light">
+            <p class="modal-card-title">Settings</p>
+            <button id="bSettingsClose" class="delete"></button>
+        </header>
+        <div class="modal-card-body">
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Follow:</label>
+                </div>
+                <div class="field-body">
+                    <div class="select">
+                        <select id="selFollow">
+                            <option value="0">Free for all</option>
+                            <!--<option value="1">Paid</option>-->
+                            <option value="-1">Closed</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="modal-card-foot has-background-link-light">
+            <div style="margin-left: auto">
+                <button id="bSettingsSave" class="button is-link is-rounded">Save</button>
+                <button id="bSettingsCancel" class="button is-rounded">Cancel</button>
+            </div>
+        </footer>
+    </div>
+</div>
+
+
+<div id="dMainPage" class="is-hidden">
+    <div id="dMainInfo" class="px-2 mb-3">
+        <p class="title has-text-right">“You can not be blocked on Blockchain.”</p>
+        <p class="subtitle has-text-right is-italic">TwiTez developer</p>
+    </div>
+    <div class="tabs is-boxed">
+        <ul>
+<!--            <li id="tabInfo" class="">
+                <a><span class="has-text-weight-semibold">TwiTez Info</span></a>
+            </li>-->
+            <li id="tabNewTweets">
+                <a><span class="has-text-weight-semibold is-active">New Tweets</span></a>
+            </li>
+        </ul>
+    </div>
+    <div id="dMainNewTweets">
+    </div>
+</div>
+
+
+<div id="dContent" class="is-hidden">
+    <div id="dUserContent">
+    </div>
+    <div id="dMessages">
+    </div>
+</div>
+
+
+<div id="dTweetContent" class="is-hidden">
+    <div id="dTweet">
+    </div>    
+    <hr class="p-0 m-0"/>
+    <nav id="dTweetNav" class="level is-mobile p-3 m-0">
+        <div class="level-item">
+            <div id="btnTweetReply" class="tweet-btn-reply p-3" style="border-radius: 30px;">
+                <span class="icon is-medium has-text-info"><i class="fa-regular fa-2x fa-comment"></i></span>
+                <!--<span class="icon is-medium has-text-info"><i class="fas fa-2x fa-reply"></i></span>-->
+            </div>
+        </div>
+        <div class="level-item">
+            <div id="btnTweetRetweet" class="tweet-btn-retweet p-3" style="border-radius: 30px;">
+                <span class="icon is-medium"><i class="fas fa-2x fa-retweet"></i></span>
+            </div>
+        </div>
+        <div class="level-item">
+            <div id="btnTweetLike" class="tweet-btn-like p-3" style="border-radius: 30px;">
+                <span class="icon is-medium has-text-danger"><i id="btnTweetLikeImg" class="fa-regular fa-2x fa-heart"></i></span>
+            </div>
+        </div>
+        <div class="level-item">
+            <div id="btnTweetLink" class="tweet-btn-link p-3" style="border-radius: 30px;">
+                <span class="icon is-medium has-text-info-dark"><i class="fas fa-2x fa-link"></i></span>
+            </div>
+        </div>
+    </nav>
+    <hr class="p-0 m-0"/>
+    <div id="dReplies">
+    </div>
+</div>
+
+
+<!-- Donate -->
+<div id="mDonate" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head has-background-link-light">
+            <p class="modal-card-title">Donation</p>
+            <button id="bDonateClose" class="delete" onclick="document.getElementById('mDonate').classList.remove('is-active');"></button>
+        </header>
+        <div class="modal-card-body">
+            <div class="buttons has-addons is-centered">
+                <button class="button js-donate-btn is-rounded is-info is-selected" data-amount="5">5&nbsp;&#42793;</button>
+                <button class="button js-donate-btn" data-amount="10">10&nbsp;&#42793;</button>
+                <button class="button js-donate-btn" data-amount="25">25&nbsp;&#42793;</button>
+                <button class="button js-donate-btn is-rounded" data-amount="50">50&nbsp;&#42793;</button>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">&#42793;&nbsp;amount:</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control">
+                            <input id="mmDonationAmount" class="input" type="text" placeholder="0.0" value="5"
+                                   onkeypress="if (isNaN(this.value + String.fromCharCode(event.keyCode))) return false;"/>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Address:</label>
+                </div>
+                <div class="field-body">
+                    <input id="mmDonationAddress" class="input" type="text" disabled=""/>
+                </div>
+            </div>
+        </div>
+        <footer class="modal-card-foot has-background-link-light">
+            <div style="margin-left: auto">
+                <button id="bDonate" class="button is-link is-rounded">Donate</button>
+                <button id="bDonateCancel" class="button is-rounded" onclick="document.getElementById('mDonate').classList.remove('is-active');">Cancel</button>
+            </div>
+        </footer>
+    </div>
+</div>
+
+
+</div>    
+
+<template id="t-hr-0">
+    <hr class="p-0 m-0"/>
+</template>
+<template id="t-reply">
+    <div class="px-3 py-4 m-0">
+        <article class="media">
+            <figure class="media-left"><p class="image is-32x32"><img class="is-rounded js-img" src=""></p></figure>
+            <div class="media-content">
+                <div class="content">
+                    <span class="tweet-name" onclick="">
+                        <b class="js-name"></b>@<span class="js-username"></span>
+                    </span>
+                    <small class="has-text-grey"> &middot; <span class="js-date"></span></small>
+                    <button class="button is-ghost is-rounded is-shadowless tweet-btn-edit is-pulled-right is-hidden" tabindex="-1" style="position:relative;top:-8px;">
+                        <span class="icon is-small has-text-black"><i class="fa-regular fa-pen-to-square"></i></span>
+                    </button>
+                </div>
+                <div class="content js-msg"></div>
+            </div>
+        </article>
+    </div>
+</template>
+
+    
+<script type="module" src="./index.js"></script>
+</body>
+</html>
