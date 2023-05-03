@@ -58,6 +58,17 @@
             text-decoration: none !important;
             cursor: pointer;
         }
+        
+        .border-top {
+            border-width: 2px 0 0 0;
+            border-style: solid;
+            border-color: #f5f5f5;
+        }
+        .border-bottom {
+            border-width: 0 0 2px 0;
+            border-style: solid;
+            border-color: #f5f5f5;
+        }
     </style>
     
 </head>
@@ -90,7 +101,7 @@
     <div id="dLogin" class="level-right is-hidden">
         <div class="level-item">
             <div class="buttons">
-                <button id="btnLogIn" class="button is-link is-rounded"><strong>Log In</strong></button>
+                <button id="btnLogIn" class="button is-link is-rounded has-text-weight-semibold">Log In</button>
                 <button id="btnSignUp" class="button is-info is-rounded">Sign Up</button>
             </div>
         </div>
@@ -437,38 +448,58 @@
     </div>
     <div id="dMessages">
     </div>
+    <div id="dContentError" class="content has-text-centered is-hidden">
+        <br/>This page doesn't exist.<br/><br/><br/>
+        <button class="button is-link is-rounded has-text-weight-semibold" onclick="window.location.search='';">
+            <span class="icon is-small"><i class="fa-solid fa-house"></i></span>
+            <span>Go to home page</span>
+        </button>
+    </div>
+    <div id="dContentLoading" class="content has-text-centered has-text-weight-semibold is-hidden">
+        <br/><button class="button is-large is-ghost is-loading"></button><br/>
+    </div>
 </div>
 
 
 <div id="dTweetContent" class="is-hidden">
     <div id="dTweet">
     </div>    
-    <hr class="p-0 m-0"/>
-    <nav id="dTweetNav" class="level is-mobile p-3 m-0">
-        <div class="level-item">
-            <div id="btnTweetReply" class="tweet-btn-reply p-3" style="border-radius: 30px;">
-                <span class="icon is-medium has-text-info"><i class="fa-regular fa-2x fa-comment"></i></span>
-                <!--<span class="icon is-medium has-text-info"><i class="fas fa-2x fa-reply"></i></span>-->
+    <div id="dTweetNavPanel" style="border-top: 2px solid #f5f5f5; border-bottom: 2px solid #f5f5f5;">
+        <nav id="dTweetNav" class="level is-mobile p-3 m-0">
+            <div class="level-item">
+                <div id="btnTweetReply" class="tweet-btn-reply p-3" style="border-radius: 30px;">
+                    <span class="icon is-medium has-text-info"><i class="fa-regular fa-2x fa-comment"></i></span>
+                    <!--<span class="icon is-medium has-text-info"><i class="fas fa-2x fa-reply"></i></span>-->
+                </div>
             </div>
-        </div>
-        <div class="level-item">
-            <div id="btnTweetRetweet" class="tweet-btn-retweet p-3" style="border-radius: 30px;">
-                <span class="icon is-medium"><i class="fas fa-2x fa-retweet"></i></span>
+            <div class="level-item">
+                <div id="btnTweetRetweet" class="tweet-btn-retweet p-3" style="border-radius: 30px;">
+                    <span class="icon is-medium"><i class="fas fa-2x fa-retweet"></i></span>
+                </div>
             </div>
-        </div>
-        <div class="level-item">
-            <div id="btnTweetLike" class="tweet-btn-like p-3" style="border-radius: 30px;">
-                <span class="icon is-medium has-text-danger"><i id="btnTweetLikeImg" class="fa-regular fa-2x fa-heart"></i></span>
+            <div class="level-item">
+                <div id="btnTweetLike" class="tweet-btn-like p-3" style="border-radius: 30px;">
+                    <span class="icon is-medium has-text-danger"><i id="btnTweetLikeImg" class="fa-regular fa-2x fa-heart"></i></span>
+                </div>
             </div>
-        </div>
-        <div class="level-item">
-            <div id="btnTweetLink" class="tweet-btn-link p-3" style="border-radius: 30px;">
-                <span class="icon is-medium has-text-info-dark"><i class="fas fa-2x fa-link"></i></span>
+            <div class="level-item">
+                <div id="btnTweetLink" class="tweet-btn-link p-3" style="border-radius: 30px;">
+                    <span class="icon is-medium has-text-info-dark"><i class="fas fa-2x fa-link"></i></span>
+                </div>
             </div>
-        </div>
-    </nav>
-    <hr class="p-0 m-0"/>
+        </nav>
+    </div>
     <div id="dReplies">
+    </div>
+    <div id="dTweetContentError" class="content has-text-centered is-hidden">
+        <br/>This page doesn't exist.<br/><br/><br/>
+        <button class="button is-link is-rounded has-text-weight-semibold" onclick="window.location.search='';">
+            <span class="icon is-small"><i class="fa-solid fa-house"></i></span>
+            <span>Go to home page</span>
+        </button>
+    </div>
+    <div id="dTweetContentLoading" class="content has-text-centered has-text-weight-semibold is-hidden">
+        <br/><button class="button is-large is-ghost is-loading"></button><br/>
     </div>
 </div>
 
@@ -526,7 +557,7 @@
     <hr class="p-0 m-0"/>
 </template>
 <template id="t-reply">
-    <div class="px-3 py-4 m-0">
+    <div class="px-3 py-4 m-0" style="border-bottom: 2px solid #f5f5f5;">
         <article class="media">
             <figure class="media-left"><p class="image is-32x32"><img class="is-rounded js-img" src=""></p></figure>
             <div class="media-content">
