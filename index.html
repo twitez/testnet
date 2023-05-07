@@ -267,10 +267,13 @@
             <button id="bFollowingClose" class="delete"></button>
         </header>
         <div class="modal-card-body">
-            <div id="mFollowingLoading" class="has-text-centered is-hidden">
-                <button class="button is-ghost is-loading"></button>
-            </div>
             <div id="mFollowingContent" class="content has-text-weight-semibold">
+            </div>
+            <div id="mFollowingLoading" class="content has-text-centered is-hidden">
+                <button class="button is-large is-ghost is-loading"></button>
+            </div>
+            <div id="mFollowingError" class="content has-text-centered is-hidden">
+                There are no users you follow.
             </div>
         </div>
         <footer class="modal-card-foot has-background-link-light">
@@ -412,6 +415,53 @@
 </div>
 
 
+<!-- Donate -->
+<div id="mDonate" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head has-background-link-light">
+            <p class="modal-card-title">Donation</p>
+            <button id="bDonateClose" class="delete" onclick="document.getElementById('mDonate').classList.remove('is-active');"></button>
+        </header>
+        <div class="modal-card-body">
+            <div class="buttons has-addons is-centered">
+                <button class="button js-donate-btn is-rounded is-info is-selected" data-amount="5">5&nbsp;&#42793;</button>
+                <button class="button js-donate-btn" data-amount="10">10&nbsp;&#42793;</button>
+                <button class="button js-donate-btn" data-amount="25">25&nbsp;&#42793;</button>
+                <button class="button js-donate-btn is-rounded" data-amount="50">50&nbsp;&#42793;</button>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">&#42793;&nbsp;amount:</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control">
+                            <input id="mmDonationAmount" class="input" type="text" placeholder="0.0" value="5"
+                                   onkeypress="if (isNaN(this.value + String.fromCharCode(event.keyCode))) return false;"/>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Address:</label>
+                </div>
+                <div class="field-body">
+                    <input id="mmDonationAddress" class="input" type="text" disabled=""/>
+                </div>
+            </div>
+        </div>
+        <footer class="modal-card-foot has-background-link-light">
+            <div style="margin-left: auto">
+                <button id="bDonate" class="button is-link is-rounded">Donate</button>
+                <button id="bDonateCancel" class="button is-rounded" onclick="document.getElementById('mDonate').classList.remove('is-active');">Cancel</button>
+            </div>
+        </footer>
+    </div>
+</div>
+
+
 <div id="dMainPage" class="is-hidden">
     <div id="dMainInfo" class="px-2 mb-3">
         <p class="title has-text-right">“You can not be blocked on Blockchain.”</p>
@@ -489,53 +539,6 @@
     </div>
     <div id="dTweetContentLoading" class="content has-text-centered has-text-weight-semibold is-hidden">
         <br/><button class="button is-large is-ghost is-loading"></button><br/>
-    </div>
-</div>
-
-
-<!-- Donate -->
-<div id="mDonate" class="modal">
-    <div class="modal-background"></div>
-    <div class="modal-card">
-        <header class="modal-card-head has-background-link-light">
-            <p class="modal-card-title">Donation</p>
-            <button id="bDonateClose" class="delete" onclick="document.getElementById('mDonate').classList.remove('is-active');"></button>
-        </header>
-        <div class="modal-card-body">
-            <div class="buttons has-addons is-centered">
-                <button class="button js-donate-btn is-rounded is-info is-selected" data-amount="5">5&nbsp;&#42793;</button>
-                <button class="button js-donate-btn" data-amount="10">10&nbsp;&#42793;</button>
-                <button class="button js-donate-btn" data-amount="25">25&nbsp;&#42793;</button>
-                <button class="button js-donate-btn is-rounded" data-amount="50">50&nbsp;&#42793;</button>
-            </div>
-            <div class="field is-horizontal">
-                <div class="field-label is-normal">
-                    <label class="label">&#42793;&nbsp;amount:</label>
-                </div>
-                <div class="field-body">
-                    <div class="field">
-                        <p class="control">
-                            <input id="mmDonationAmount" class="input" type="text" placeholder="0.0" value="5"
-                                   onkeypress="if (isNaN(this.value + String.fromCharCode(event.keyCode))) return false;"/>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="field is-horizontal">
-                <div class="field-label is-normal">
-                    <label class="label">Address:</label>
-                </div>
-                <div class="field-body">
-                    <input id="mmDonationAddress" class="input" type="text" disabled=""/>
-                </div>
-            </div>
-        </div>
-        <footer class="modal-card-foot has-background-link-light">
-            <div style="margin-left: auto">
-                <button id="bDonate" class="button is-link is-rounded">Donate</button>
-                <button id="bDonateCancel" class="button is-rounded" onclick="document.getElementById('mDonate').classList.remove('is-active');">Cancel</button>
-            </div>
-        </footer>
     </div>
 </div>
 
