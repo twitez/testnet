@@ -13,7 +13,7 @@ With the growth of the Democratic deficit, the rise of autocracy and the total d
 TwiTez is a social media platform that empowers users with control over their data and interactions. The protocol will be distinguished from other platforms by its foundation of decentralised ownership and data access, and censorship resistance. It will offer a seamless experience for sharing multimedia content, engaging with other users through such interactions as "reactions" and comments, and conducting direct token transfers. 
 <br>
 <p align="center">
-  <img src="https://github.com/twitez/testnet/assets/105457553/b74bf804-3245-431e-b3a5-304c8bb0cdca">
+  <img src="https://github.com/twitez/testnet/assets/129535429/d5e3e0eb-8d24-41f8-9b09-d9037ff857dc">
 </p> 
 <p align="center">
 <code>User reactions</code>
@@ -38,7 +38,7 @@ The functionality of the system can be divided into three logical user roles:
 - System administrator functionality
 <br>
 <p align="center">
-  <img src="https://github.com/twitez/doc/assets/105457553/e3f4b51c-a9ec-40df-9655-fe7ca1bd3298">
+  <img src="https://github.com/twitez/testnet/assets/129535429/c3a9b739-0c3b-4ac6-8392-d8489b1d583a">
 </p>
 <br> 
 <p align="center">
@@ -63,7 +63,7 @@ Other Smart Services provide additional functionality. Here are some examples:<b
 - **Voting Service** <br>Allows users to participate in voting.
 <br>
 <p align="center">
-  <img src="https://github.com/twitez/doc/assets/105457553/be8b2960-7216-4689-bd48-7d70c15885bf">
+  <img src="https://github.com/twitez/testnet/assets/129535429/2a5c8975-6366-4817-a5d0-3d730f564b74">
 </p>
 <br>
 <p align="center">
@@ -74,7 +74,7 @@ Interactions example of different components for some business processes can be 
 <br>
 
 <p align="center">
-  <img src="https://github.com/twitez/doc/assets/105457553/0ba1a308-fd5e-46de-bb9f-83a2ad780d2c">
+  <img src="https://github.com/twitez/testnet/assets/129535429/73ad76b5-c5bb-46b3-b49f-0dd8845d2c95">
 </p>
 <br>
 <p align="center">
