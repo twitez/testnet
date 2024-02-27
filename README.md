@@ -105,24 +105,21 @@ We have already identified potential collaborators and are eager to begin engagi
 
 <br>
 <p align="center">
-  <img width="640" src="https://github.com/twitez/doc/assets/105457553/a6b093d1-79c9-40d1-a557-b33bfc184323">
+  <img width="640" src="https://github.com/twitez/testnet/assets/129535429/0a918ef0-78b6-410b-a01c-304735fee127">
 </p>
-
 <p align="center">
 <code>Feed wall view</code>
 </p>
-<br>
-
+<br><br>
 
 <p align="center">
-  <img width="640" height="720" src="https://github.com/twitez/doc/assets/105457553/1bb2baf6-4a42-48b6-b238-73215cc799c6">
+  <img width="640" src="https://github.com/twitez/testnet/assets/129535429/f53aded7-ea48-440f-98a5-7190c9175484">
 </p>
 <p align="center">
-<code>User page view</code>
+<code>Message page view</code>
 </p>
-<br>
+<br><br>
 
-<br>
 <p align="center">
   <img width="640"  src="https://github.com/twitez/testnet/assets/129535429/00543c0d-96dc-4122-83ca-66c183d6fb03">
 </p>
@@ -130,14 +127,11 @@ We have already identified potential collaborators and are eager to begin engagi
 <p align="center">
 <code>User edit profile view</code>
 </p>
-<br>
+<br><br>
 
-<br>
 <p align="center">
   <img width="640" src="https://github.com/twitez/testnet/assets/129535429/cb9f2fee-ab64-4b80-a192-4ff4c12586dc">
-
 </p>
-
 <p align="center">
 <code>User profile</code>
 </p>
