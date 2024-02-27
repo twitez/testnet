@@ -124,7 +124,7 @@ We have already identified potential collaborators and are eager to begin engagi
 
 <br>
 <p align="center">
-  <img width="640"  src="https://github.com/twitez/doc/assets/105457553/b5d40258-7c78-48cb-803a-1a31b2c38dde">
+  <img width="640"  src="https://github.com/twitez/testnet/assets/129535429/00543c0d-96dc-4122-83ca-66c183d6fb03">
 </p>
 
 <p align="center">
@@ -134,7 +134,8 @@ We have already identified potential collaborators and are eager to begin engagi
 
 <br>
 <p align="center">
-  <img width="640" src="https://github.com/twitez/doc/assets/105457553/659a959f-8fc8-4346-8f1e-7691bdb9d367">
+  <img width="640" src="https://github.com/twitez/testnet/assets/129535429/cb9f2fee-ab64-4b80-a192-4ff4c12586dc">
+
 </p>
 
 <p align="center">
@@ -161,7 +162,7 @@ We have already identified potential collaborators and are eager to begin engagi
 
 - **German Korjagin** <br>15 years of experience in data science, analytics, software and business development. Expertise in cyber security, digital payments and analytics. Proficient knowledge of blockchains and DAGs.<br>
 
-- **Sergei Pangin** <br>Skilled and qualified software developer with 20+ years of experience and the practice of software design, project management and team leading,  proficient in financial services development, with in-depth knowledge of IOTA, Ethereum, and Tezos platforms.
+- **Sergei Pangin** <br>Skilled and qualified software developer with 20+ years of experience and the practice of software design, project management and team leading,  proficient in financial services development, with in-depth knowledge of Ethereum, IOTA, and Tezos platforms.
 
 
 ### Team Code Repos
